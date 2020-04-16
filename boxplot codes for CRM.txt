@@ -1,0 +1,32 @@
+company <- read.csv("clean future 500.csv",na.strings = c(""))
+
+install.packages("ggplot2")
+library(ggplot2)
+
+#visualization 
+
+#A scatterplot classified by industry showing revenue,expense and profit
+
+p <- ggplot(data = company)
+p
+# geom stands for adding geomtry and aes() stands for asthetics
+p + geom_point(aes(x=Revenue, y=Expenses ,colour=Industry, size=Profit ))
+
+
+
+#A scatter plot that includes industry trends for the expense ~ revenue relationship
+
+
+#here we are setting in d aestathics by default for x y and color so if we print d+geom_point it
+# will show the values auto. Also geom_point is for scatterplot geom_smooth is for trends
+d <- ggplot(data = company,aes(x=Revenue ,y=Expenses ,colour=Industry))
+
+d + geom_point() + geom_smooth(fill=NA , size=1.2)
+
+#boxplots showing growth by industry
+
+b <- ggplot(data = company, aes(x=Industry, y=Growth ,colour=Industry))
+
+b + geom_boxplot(size=1)
+
+b + geom_jitter() + geom_boxplot(alpha=0.5, outlier.colour = NA)
